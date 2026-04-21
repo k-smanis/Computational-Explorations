@@ -8,7 +8,7 @@ This repository contains a collection of interdisciplinary problems explored thr
 
 ## Structure
 
-```
+```text
 problems/
   problem_1.ipynb
   problem_2.ipynb
@@ -22,20 +22,25 @@ INDEX.md        # auto-generated
 
 ## Metadata and Tagging
 
-Each problem is a Jupyter notebook (`.ipynb`) and must include metadata in its first cell.
+Each problem is a Jupyter notebook (`.ipynb`) and must include metadata in its **first cell**.
 
-The first cell must be a Markdown cell containing a YAML block:
+The first cell must be a Markdown cell containing a YAML code block with the problem's metadata.
 
 ```yaml
----
-title: Fourier Heat Equation
-tags: [calculus, linear-algebra, physics]
----
+title: Heat Equation
+tags: [calculus, physics]
 ```
 
-The metadata block may optionally be followed by additional text in the same cell.
+If you're not familiar with markdown syntax, just know that you can write a yaml code block like so:
 
-## Tag Rules (Strict)
+````text
+```yaml
+title: Heat Equation
+tags: [calculus, physics]
+```
+````
+
+## Tag Rules
 
 Tags are the primary organizational mechanism and must follow strict rules:
 
@@ -70,13 +75,12 @@ A tag-based index where each problem appears under all relevant categories
 1. Add a new notebook in `problems/`
 2. Include a valid metadata block in the first cell
 3. Run:
-
-```bash
-python scripts/generate_index.py
-```
+  
+    ```bash
+    python scripts/generate_index.py
+    ```
 
 4. The following files are updated automatically:
-
    * `metadata.yaml`
    * `INDEX.md`
 
@@ -87,14 +91,14 @@ The indexing script uses strict validation and will fail if:
 * The file is not a valid `.ipynb`
 * The first cell is missing
 * The first cell is not a Markdown cell
-* The metadata block is missing or malformed
+* The YAML code block is missing or malformed
 * The `tags` field is missing
 * Tags are empty or incorrectly formatted
 
 **Example error:**
 
-```
-Error: problems/heat_equation.ipynb: missing 'tags'
+```bash
+Error: problems/heat_equation.ipynb: missing YAML code block
 ```
 
 ## Approach
